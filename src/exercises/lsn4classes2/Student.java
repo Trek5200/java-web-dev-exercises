@@ -1,5 +1,7 @@
 package exercises.lsn4classes2;
 
+import java.util.Objects;
+
 public class Student {
 
     private static int nextStudentId = 1;
@@ -29,7 +31,7 @@ public class Student {
     }
 
      //TODO: Uncomment and complete the getGradeLevel method here:
-    public String getGradeLevel(getNumberOfCredits())
+    public String getGradeLevel(int getNumberOfCredits)
     {
         // Determine the grade level of the student based on numberOfCredits
         //returns the student’s level based on the number of credits they have earned:
@@ -59,10 +61,10 @@ public class Student {
 
         // Determine and update the student’s GPA:
         //      Calculate their current total quality score by using the formula gpa * numberOfCredits.
-        double totalQualityScore = getGPA() * getNumberOfCredits()
+        double totalQualityScore = getGpa() * getNumberOfCredits();
         //      Use the new course grade and course credits to update their total quality score.
         double classQualityScore = courseCredits * grade;
-        totalQualityScore = totalQualityScore + classQualityScore
+        totalQualityScore = totalQualityScore + classQualityScore;
         //      Update the student’s total numberOfCredits.
         setNumberOfCredits(getNumberOfCredits() + courseCredits);
         //      Compute their new GPA.
@@ -73,37 +75,58 @@ public class Student {
     // TODO: Add your custom 'toString' method here. Make sure it returns a well-formatted String rather
     //  than just the class fields.
 
+    @Override
+    public String toString() {
+        return "Student{" +
+                "name='" + name + '\'' +
+                ", studentId=" + studentId +
+                ", numberOfCredits=" + numberOfCredits +
+                ", gpa=" + gpa +
+                '}';
+    }
+
+
     // TODO: Add your custom 'equals' method here. Consider which fields should match in order to call two
     //  Student objects equal.
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return getStudentId() == student.getStudentId() &&
+                getNumberOfCredits() == student.getNumberOfCredits() &&
+                Double.compare(student.getGpa(), getGpa()) == 0 &&
+                Objects.equals(getName(), student.getName());
+    }
+
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(getName(), getStudentId(), getNumberOfCredits(), getGpa());
+//    }
 
     public String getName() {
         return name;
     }
-
     public int getStudentId() {
         return studentId;
     }
-
     public int getNumberOfCredits() {
         return numberOfCredits;
     }
-
     public double getGpa() {
         return gpa;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public void setStudentId(int studentId) {
         this.studentId = studentId;
     }
-
     public void setGpa(double gpa) {
         this.gpa = gpa;
     }
-
     private void setNumberOfCredits(int numberOfCredits) {
         this.numberOfCredits = numberOfCredits;
     }
