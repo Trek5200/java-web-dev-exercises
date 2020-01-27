@@ -53,6 +53,6 @@ public class CountChars {
             }
         }
         System.out.println(parsedEntry);
-
+        input.close();
     }
 }
